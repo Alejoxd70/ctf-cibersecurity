@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>✅ Fase 1 Desbloqueada: Reconocimiento Externo</h2>
+<h2>Fase 1 Desbloqueada: Reconocimiento Externo</h2>
 
 <div class="unlocked-box">
     <h3>Tu misión</h3>
@@ -10,13 +10,35 @@
         <li>¿Qué <strong>puertos</strong> están abiertos?</li>
         <li>¿Qué <strong>servicios y versiones</strong> corren en cada puerto?</li>
         <li>¿Qué <strong>tecnologías</strong> usa la aplicación web?</li>
+        <li>¿Hay <strong>información expuesta</strong> en headers HTTP o código fuente?</li>
     </ol>
 
-    <h3>Pista</h3>
+    <h3>Pistas</h3>
+    <p class="hint">Un buen pentester siempre revisa los headers HTTP de las respuestas.</p>
+    <p class="hint">¿Has probado <code>curl -v</code> contra el servidor?</p>
+    <p class="hint">El código fuente de una página a veces dice más de lo que debería...</p>
     <p class="hint">El servidor tiene más de lo que se ve a simple vista.
-    Hay una ruta oculta que contiene una flag. No la busques manualmente...
+    Hay una ruta oculta que contiene otra flag. No la busques manualmente...
     eso es tarea de la <strong>Fase 2</strong>.</p>
-    <p class="hint">Por ahora, concéntrate en responder: ¿qué hay corriendo y en qué versión?</p>
+</div>
+
+<div class="unlocked-box">
+    <h3>Enviar Flag de Reconocimiento</h3>
+    <p>Cuando encuentres la flag oculta en el servidor, ingrésala aquí:</p>
+
+    {% if flag_success %}
+    <p class="success">¡Correcto! Has completado la Fase 1. Buen reconocimiento.</p>
+    {% else %}
+        {% if flag_error %}
+        <p class="error">{{ flag_error }}</p>
+        {% endif %}
+        <form method="POST" action="/phase1/unlocked">
+            <div class="question">
+                <input type="text" name="flag" placeholder="FLAG{...}" required>
+            </div>
+            <button type="submit">Validar Flag</button>
+        </form>
+    {% endif %}
 </div>
 
 <p><a href="/">← Volver al inicio</a></p>

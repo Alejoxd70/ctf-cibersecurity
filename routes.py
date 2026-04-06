@@ -1,8 +1,21 @@
-from flask import render_template, request, session, redirect, url_for
-from config import PHASE1_ANSWERS
+from flask import render_template, request, session, redirect, url_for, make_response
+from config import PHASE1_ANSWERS, PHASE1_FLAG
 
 
 def register_routes(app):
+
+    # --- Header personalizado en TODAS las respuestas (pista para recon) ---
+    @app.after_request
+    def add_recon_headers(response):
+        response.headers["X-Backend-Server"] = "OguriCorp-Ubuntu-Internal"
+        response.headers["X-Powered-By"] = "Flask/Ubuntu"
+        return response
+
+    # --- robots.txt: pista clásica de reconocimiento ---
+    @app.route("/robots.txt")
+    def robots():
+        content = "User-agent: *\nDisallow: /s3cr3t-status\nDisallow: /admin-panel\nDisallow: /backup\n"
+        return content, 200, {"Content-Type": "text/plain"}
 
     @app.route("/")
     def index():
@@ -32,11 +45,25 @@ def register_routes(app):
         return render_template("phase1_quiz.html", error=error)
 
     # --- FASE 1: Contenido desbloqueado ---
-    @app.route("/phase1/unlocked")
+    @app.route("/phase1/unlocked", methods=["GET", "POST"])
     def phase1_unlocked():
         if not session.get("phase1_unlocked"):
             return redirect(url_for("phase1_quiz"))
-        return render_template("phase1_unlocked.html")
+
+        flag_error = None
+        flag_success = False
+
+        if request.method == "POST":
+            submitted = request.form.get("flag", "").strip()
+            if submitted == PHASE1_FLAG:
+                flag_success = True
+                session["phase1_flag_found"] = True
+            else:
+                flag_error = "Flag incorrecta. Sigue investigando con tus herramientas de reconocimiento."
+
+        return render_template("phase1_unlocked.html",
+                               flag_error=flag_error,
+                               flag_success=flag_success)
 
     # --- Ruta oculta: simula un servicio expuesto (la "flag" de reconocimiento) ---
     # El atacante debe descubrirla con herramientas de enumeración,
@@ -44,3 +71,8 @@ def register_routes(app):
     @app.route("/s3cr3t-status")
     def secret_status():
         return "FLAG{reconocimiento_completado_2025}", 200, {"Content-Type": "text/plain"}
+
+    # --- Ruta señuelo: aparece en robots.txt pero no existe ---
+    @app.route("/admin-panel")
+    def admin_panel():
+        return "403 Forbidden - Acceso denegado", 403, {"Content-Type": "text/plain"}

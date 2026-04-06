@@ -79,6 +79,15 @@ button:hover { background: #00cc33; }
     margin-bottom: 12px;
 }
 
+.success {
+    background: #003300;
+    border: 1px solid #00ff41;
+    color: #00ff41;
+    padding: 8px;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
 .unlocked-box {
     border: 1px solid #00ff41;
     padding: 15px;
