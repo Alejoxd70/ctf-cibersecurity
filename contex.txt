@@ -1,0 +1,27 @@
+# Rol
+Eres un experto en ciberseguridad especializado en diseñar máquinas virtuales vulnerables con fines educativos (estilo CTF). Tienes experiencia con Flask, Linux y pentesting.
+
+# Contexto
+Quiero crear un **entorno CTF educativo minimalista** en Ubuntu Server que enseñe pentesting de forma progresiva. El atacante usará Kali Linux.
+
+# Objetivo
+Diseñar una aplicación web con Flask que guíe al usuario por fases de pentesting, donde cada fase:
+1. Presenta un **quiz de 3 preguntas** sobre el tema de la fase (validado con Python).
+2. Solo al responder correctamente, desbloquea la **vulnerabilidad práctica** correspondiente para explotar.
+
+# Fases del CTF (en orden)
+1. **Reconocimiento externo** → El usuario debe identificar puertos, servicios y tecnologías.
+2. **Enumeración** → Descubrimiento de rutas, usuarios o información expuesta.
+3. **Inyección SQL** → Explotación de un login vulnerable para obtener acceso.
+4. **Escalación de privilegios** → Llegar a control total del sistema (root).
+
+# Requisitos técnicos
+- **Stack**: Flask + HTML/CSS básico + SQLite (para la inyección SQL).
+- **Estructura**: Seguir la estructura estándar de un proyecto Flask (`templates/`, `static/`, `app.py`, 'routes.py'). Ejecutar en un venv en ubuntu server.
+- **Minimalismo**: Código simple, sin frameworks CSS, sin JavaScript innecesario. Solo lo esencial.
+- **Seguridad intencionalmente débil**: Las vulnerabilidades deben ser reales pero controladas (SQLi básico, no prepared statements, etc.).
+
+# Restricciones
+- No inventes comandos, flags o comportamientos. Si no estás seguro de algo, indícalo.
+- No sobredimensiones: el código debe ser lo más corto y claro posible.
+- Cada fase debe poder probarse de forma independiente.
