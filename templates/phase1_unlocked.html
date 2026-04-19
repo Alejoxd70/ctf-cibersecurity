@@ -1,25 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Fase 1 Desbloqueada: Reconocimiento Externo</h2>
+<h2>Fase 1 Desbloqueada: Reconocimiento de la Torre Stark</h2>
 
 <div class="unlocked-box">
     <h3>Tu misión</h3>
-    <p>Desde tu máquina Kali, realiza un reconocimiento completo del servidor CTF.</p>
-    <p>Debes descubrir:</p>
-    <ol>
-        <li>¿Qué <strong>puertos</strong> están abiertos?</li>
-        <li>¿Qué <strong>servicios y versiones</strong> corren en cada puerto?</li>
-        <li>¿Qué <strong>tecnologías</strong> usa la aplicación web?</li>
-        <li>¿Hay <strong>información expuesta</strong> en headers HTTP o código fuente?</li>
-    </ol>
+    <p>Agente, has demostrado conocimiento teórico. Ahora JARVIS está parcialmente expuesto.</p>
+    <p>Desde tu terminal, realiza un reconocimiento real del servidor CTF para encontrar la flag oculta.</p>
+    <img src="/static/img/stark_tower.png" alt="Torre Stark" style="width:100%; max-height:180px; object-fit:cover; margin:10px 0;">
 
     <h3>Pistas</h3>
-    <p class="hint">Un buen pentester siempre revisa los headers HTTP de las respuestas.</p>
-    <p class="hint">¿Has probado <code>curl -v</code> contra el servidor?</p>
-    <p class="hint">El código fuente de una página a veces dice más de lo que debería...</p>
-    <p class="hint">El servidor tiene más de lo que se ve a simple vista.
-    Hay una ruta oculta que contiene otra flag. No la busques manualmente...
-    eso es tarea de la <strong>Fase 2</strong>.</p>
+    <p class="hint">Incluso Tony Stark revisa los logs antes de actuar. Prueba los headers HTTP del servidor.</p>
+    <p class="hint">¿Qué haría Nick Fury? Tal vez <code>curl -v</code> revela información valiosa...</p>
+    <p class="hint">Black Widow siempre revisa el código fuente. Inspecciona la página.</p>
+    <p class="hint">JARVIS tiene rutas ocultas. No las busques a mano — eso es tarea de la siguiente fase.</p>
 </div>
 
 <div class="unlocked-box">
@@ -27,7 +20,7 @@
     <p>Cuando encuentres la flag oculta en el servidor, ingrésala aquí:</p>
 
     {% if flag_success %}
-    <p class="success">¡Correcto! Has completado la Fase 1. Buen reconocimiento.</p>
+    <p class="success">¡Excelente trabajo, Agente! Has completado el reconocimiento de la Torre Stark. JARVIS ha registrado tu acceso.</p>
     {% else %}
         {% if flag_error %}
         <p class="error">{{ flag_error }}</p>

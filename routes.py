@@ -7,14 +7,14 @@ def register_routes(app):
     # --- Header personalizado en TODAS las respuestas (pista para recon) ---
     @app.after_request
     def add_recon_headers(response):
-        response.headers["X-Backend-Server"] = "OguriCorp-Ubuntu-Internal"
-        response.headers["X-Powered-By"] = "Flask/Ubuntu"
+        response.headers["X-Backend-Server"] = "StarkTower-JARVIS-Internal"
+        response.headers["X-Powered-By"] = "JARVIS/Flask"
         return response
 
     # --- robots.txt: pista clásica de reconocimiento ---
     @app.route("/robots.txt")
     def robots():
-        content = "User-agent: *\nDisallow: /s3cr3t-status\nDisallow: /admin-panel\nDisallow: /backup\n"
+        content = "User-agent: *\nDisallow: /jarvis-status\nDisallow: /stark-admin\nDisallow: /arc-reactor-backup\n"
         return content, 200, {"Content-Type": "text/plain"}
 
     @app.route("/")
@@ -59,7 +59,7 @@ def register_routes(app):
                 flag_success = True
                 session["phase1_flag_found"] = True
             else:
-                flag_error = "Flag incorrecta. Sigue investigando con tus herramientas de reconocimiento."
+                flag_error = "Flag incorrecta. Sigue escaneando la Torre con tus herramientas."
 
         return render_template("phase1_unlocked.html",
                                flag_error=flag_error,
@@ -68,11 +68,11 @@ def register_routes(app):
     # --- Ruta oculta: simula un servicio expuesto (la "flag" de reconocimiento) ---
     # El atacante debe descubrirla con herramientas de enumeración,
     # pero en Fase 1 solo necesita saber que existe algo más.
-    @app.route("/s3cr3t-status")
+    @app.route("/jarvis-status")
     def secret_status():
-        return "FLAG{reconocimiento_completado_2025}", 200, {"Content-Type": "text/plain"}
+        return "FLAG{stark_tower_recon_2025}", 200, {"Content-Type": "text/plain"}
 
     # --- Ruta señuelo: aparece en robots.txt pero no existe ---
-    @app.route("/admin-panel")
+    @app.route("/stark-admin")
     def admin_panel():
         return "403 Forbidden - Acceso denegado", 403, {"Content-Type": "text/plain"}

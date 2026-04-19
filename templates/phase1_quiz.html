@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Fase 1: Reconocimiento Externo</h2>
-<p>Responde correctamente las 3 preguntas para desbloquear el reto práctico.</p>
+<h2>Fase 1: Reconocimiento de la Torre Stark</h2>
+<p>Los mejores héroes analizan antes de actuar. Demuestra que conoces las herramientas de reconocimiento para mapear la Torre Stark.</p>
+<img src="/static/img/ironman_scan.png" alt="Iron Man escaneando" style="width:100%; max-height:150px; object-fit:cover; margin-bottom:15px;">
 
 {% if error %}
 <p class="error">{{ error }}</p>
@@ -9,20 +10,20 @@
 
 <form method="POST" action="/phase1">
     <div class="question">
-        <label>1. ¿Cuál es la herramienta estándar en Linux para escanear puertos de un host remoto?</label>
-        <input type="text" name="q1" placeholder="Nombre de la herramienta" required>
+        <label>1. Ni Batman se lanza a lo loco sin analizar el terreno. Si quisieras descubrir qué puertos están abiertos en un objetivo usando Nmap, ¿qué comando usarías?</label>
+        <input type="text" name="q1" placeholder="nmap ..." required>
     </div>
 
     <div class="question">
-        <label>2. ¿Cuál es el puerto por defecto del servicio SSH?</label>
-        <input type="text" name="q2" placeholder="Número de puerto" required>
+        <label>2. Deadpool rompe la cuarta pared… tú puedes romper la seguridad si haces esto mal. Si quisieras hacer un escaneo sigiloso (SYN scan) con Nmap, ¿qué comando usarías?</label>
+        <input type="text" name="q2" placeholder="nmap ..." required>
     </div>
 
     <div class="question">
-        <label>3. ¿Qué flag de nmap se usa para detectar las versiones de los servicios en los puertos abiertos?</label>
-        <input type="text" name="q3" placeholder="Flag de nmap" required>
+        <label>3. Spider-Man tiene sentido arácnido… tú tienes comandos básicos. Si quisieras identificar servicios y versiones en un sistema usando Nmap, ¿qué escribirías?</label>
+        <input type="text" name="q3" placeholder="nmap ..." required>
     </div>
 
-    <button type="submit">Enviar respuestas</button>
+    <button type="submit">⚡ Infiltrar Torre Stark</button>
 </form>
 {% endblock %}
