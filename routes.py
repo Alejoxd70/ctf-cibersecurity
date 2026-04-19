@@ -14,7 +14,15 @@ def register_routes(app):
     # --- robots.txt: pista clásica de reconocimiento ---
     @app.route("/robots.txt")
     def robots():
-        content = "User-agent: *\nDisallow: /jarvis-status\nDisallow: /stark-admin\nDisallow: /arc-reactor-backup\n"
+        content = (
+            "User-agent: *\n"
+            "Disallow: /stark-admin\n"
+            "Disallow: /arc-reactor-backup\n"
+            "Disallow: /hexdump-lab\n"
+            "Disallow: /exiftool-lab\n"
+            "Disallow: /binwalk-lab\n"
+            "Disallow: /stark-intel\n"
+        )
         return content, 200, {"Content-Type": "text/plain"}
 
     @app.route("/")
@@ -65,14 +73,25 @@ def register_routes(app):
                                flag_error=flag_error,
                                flag_success=flag_success)
 
-    # --- Ruta oculta: simula un servicio expuesto (la "flag" de reconocimiento) ---
-    # El atacante debe descubrirla con herramientas de enumeración,
-    # pero en Fase 1 solo necesita saber que existe algo más.
-    @app.route("/jarvis-status")
-    def secret_status():
-        return "FLAG{stark_tower_recon_2025}", 200, {"Content-Type": "text/plain"}
-
     # --- Ruta señuelo: aparece en robots.txt pero no existe ---
     @app.route("/stark-admin")
     def admin_panel():
         return "403 Forbidden - Acceso denegado", 403, {"Content-Type": "text/plain"}
+
+    # --- Rutas de laboratorio de herramientas forenses (descubiertas via robots.txt) ---
+    @app.route("/hexdump-lab")
+    def hexdump_lab():
+        return render_template("tool_hexdump.html")
+
+    @app.route("/exiftool-lab")
+    def exiftool_lab():
+        return render_template("tool_exiftool.html")
+
+    @app.route("/binwalk-lab")
+    def binwalk_lab():
+        return render_template("tool_binwalk.html")
+
+    # --- Repositorio de inteligencia Stark: contiene gem.jpg con metadatos de usuarios ---
+    @app.route("/stark-intel")
+    def stark_intel():
+        return render_template("stark_intel.html")

@@ -14,4 +14,4 @@ PHASE1_ANSWERS = {
 }
 
 # Flag de reconocimiento: oculta en header HTTP, visible con curl -v o nmap scripts
-PHASE1_FLAG = "FLAG{stark_tower_recon_2025}"
+PHASE1_FLAG = "FLAG{stark_tower_recon}"

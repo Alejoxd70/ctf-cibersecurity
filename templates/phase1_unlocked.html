@@ -9,10 +9,10 @@
     <img src="/static/img/stark_tower.png" alt="Torre Stark" style="width:100%; max-height:180px; object-fit:cover; margin:10px 0;">
 
     <h3>Pistas</h3>
-    <p class="hint">Incluso Tony Stark revisa los logs antes de actuar. Prueba los headers HTTP del servidor.</p>
-    <p class="hint">¿Qué haría Nick Fury? Tal vez <code>curl -v</code> revela información valiosa...</p>
-    <p class="hint">Black Widow siempre revisa el código fuente. Inspecciona la página.</p>
-    <p class="hint">JARVIS tiene rutas ocultas. No las busques a mano — eso es tarea de la siguiente fase.</p>
+    <p class="hint">Los servidores también tienen reglas de cortesía. Para los robots, claro. Tú seguramente no las necesitas.</p>
+    <p class="hint">Hay cosas que los administradores prefieren que no veas. Qué raro que lo pongan por escrito.</p>
+    <p class="hint">Una imagen vale más que mil palabras. O quizás vale exactamente una lista... quién sabe.</p>
+    <p class="hint">Si no sabes qué hacer con un archivo, tranquilo. Seguro lo descubres solo. Eventualmente.</p>
 </div>
 
 <div class="unlocked-box">
@@ -20,7 +20,8 @@
     <p>Cuando encuentres la flag oculta en el servidor, ingrésala aquí:</p>
 
     {% if flag_success %}
-    <p class="success">¡Excelente trabajo, Agente! Has completado el reconocimiento de la Torre Stark. JARVIS ha registrado tu acceso.</p>
+    <p class="success">Correcto. La Torre Stark ha registrado tu acceso.</p>
+    <p class="hint">Ah, y no olvides responder esa pregunta... <br>Seguro que alguno funciona... <br>O ninguno...</p>
     {% else %}
         {% if flag_error %}
         <p class="error">{{ flag_error }}</p>
@@ -34,5 +35,5 @@
     {% endif %}
 </div>
 
-<p><a href="/">← Volver al inicio</a></p>
+<p><a href="/">Volver al inicio</a></p>
 {% endblock %}
