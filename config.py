@@ -8,10 +8,10 @@ SECRET_KEY = os.urandom(24)
 
 # Respuestas correctas del quiz Fase 1 (lowercase para comparar)
 PHASE1_ANSWERS = {
-    "q1": "nmap",        # ¿Herramienta estándar para escaneo de puertos?
-    "q2": "22",           # ¿Puerto por defecto de SSH?
-    "q3": "-sv",          # ¿Flag de nmap para detectar versiones de servicios?
+    "q1": "nmap -p",    # Descubrir puertos abiertos
+    "q2": "nmap -ss",   # Escaneo sigiloso SYN scan
+    "q3": "nmap -sv",   # Identificar servicios y versiones
 }
 
 # Flag de reconocimiento: oculta en header HTTP, visible con curl -v o nmap scripts
-PHASE1_FLAG = "FLAG{http_header_recon_2025}"
+PHASE1_FLAG = "FLAG{stark_tower_recon_2025}"
