@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Fase 2: Infiltración del Sistema de Autenticación</h2>
+<p>JARVIS protege el acceso a la Torre Stark con un panel de login. Pero los sistemas de autenticación también tienen sus debilidades... especialmente cuando los desarrolladores confían demasiado en el input del usuario.</p>
+
+{% if error %}
+<p class="error">{{ error }}</p>
+{% endif %}
+
+<form method="POST" action="/phase2">
+    <div class="question">
+        <label>Tony Stark construyó su primera armadura en una cueva con chatarra. Tú solo necesitas un símbolo para hacerle creer a una base de datos que eres parte de ella. Algo que cierra lo que se abrió... antes de que alguien se dé cuenta.</label>
+        <input type="text" name="q1" placeholder="[un solo carácter]" required autocomplete="off">
+    </div>
+
+    <div class="question">
+        <label>¿Por qué conformarse con espiar una sola habitación cuando puedes recorrer toda la Torre? En SQL hay una palabra que no invita a nadie a la fiesta, pero sí fusiona dos listas de invitados como si siempre hubieran sido una. No es magia. Es sintaxis.</label>
+        <input type="text" name="q2" placeholder="[keyword SQL]" required autocomplete="off">
+    </div>
+
+    <div class="question">
+        <label>El Agente Coulson nunca existió. Algunos fragmentos de texto tampoco tienen por qué existir. Hay dos caracteres que convencen al motor de base de datos de que todo lo que venga después simplemente... no merece su atención.</label>
+        <input type="text" name="q3" placeholder="[2 caracteres]" required autocomplete="off">
+    </div>
+
+    <button type="submit">Acceder al Terminal JARVIS</button>
+</form>
+{% endblock %}

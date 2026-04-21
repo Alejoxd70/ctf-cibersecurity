@@ -7,5 +7,12 @@
 <h3>Fases de Infiltración</h3>
 <ul>
     <li><a href="/phase1">Fase 1: Reconocimiento de la Torre Stark</a></li>
+    <li>
+        {% if session.get("phase1_flag_found") %}
+        <a href="/phase2">Fase 2: SQL Injection — Sistema de Autenticación JARVIS</a>
+        {% else %}
+        <span style="color:#444;">Fase 2: SQL Injection — [BLOQUEADA — Completa la Fase 1]</span>
+        {% endif %}
+    </li>
 </ul>
 {% endblock %}

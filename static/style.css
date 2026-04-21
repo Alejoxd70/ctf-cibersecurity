@@ -112,3 +112,104 @@ footer {
     border: 2px solid #FFD700;
     border-radius: 4px;
 }
+
+/* =====================================================
+   FASE 2: SQL Injection — Terminal JARVIS styles
+   ===================================================== */
+
+/* Contenedor tipo terminal para el login */
+.jarvis-terminal {
+    border: 1px solid #FFD700;
+    padding: 20px;
+    background: #050510;
+    position: relative;
+    margin: 15px 0;
+}
+
+.jarvis-terminal .terminal-header {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: #FFD700;
+    border-bottom: 1px solid #333;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+/* Bloque de debug SQL (verde sobre negro, estilo consola) */
+.sql-debug {
+    background: #001100;
+    border: 1px solid #00aa44;
+    color: #00dd55;
+    padding: 10px 12px;
+    margin: 10px 0;
+    font-size: 0.82rem;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.sql-debug code {
+    color: #00ff66;
+    font-weight: bold;
+}
+
+/* Bloque de error SQL (rojo intenso, expone info de BD) */
+.sql-error {
+    background: #1a0000;
+    border: 1px solid #cc2200;
+    color: #ff5533;
+    padding: 10px 12px;
+    margin: 10px 0;
+    font-size: 0.82rem;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.sql-error code {
+    color: #ff7755;
+}
+
+/* Texto de acceso concedido */
+.access-granted {
+    color: #00ff41;
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 8px 0 15px;
+    border-left: 3px solid #00ff41;
+    padding-left: 10px;
+}
+
+/* Tarjeta de usuario recuperado de la BD */
+.user-card {
+    border: 1px solid #00aa44;
+    background: #001a00;
+    padding: 12px;
+    margin: 10px 0;
+}
+
+.user-card .cell-label {
+    color: #666;
+    padding: 4px 12px 4px 4px;
+    width: 130px;
+    vertical-align: top;
+}
+
+.user-card .cell-description {
+    color: #FFD700;
+    font-weight: bold;
+}
+
+/* Badges de rol */
+.role-badge {
+    padding: 1px 8px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.role-admin   { color: #ff4444; border: 1px solid #ff4444; }
+.role-user    { color: #87CEEB; border: 1px solid #87CEEB; }
+.role-operator{ color: #FFD700; border: 1px solid #FFD700; }
+.role-system  { color: #ff9900; border: 1px solid #ff9900; }
