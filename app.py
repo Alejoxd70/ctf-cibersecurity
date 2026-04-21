@@ -1,9 +1,13 @@
 from routes import register_routes
 from flask import Flask
 from config import SECRET_KEY
+from database import init_db
 
 app = Flask(__name__)
 app.secret_key = SECRET_KEY
+
+# Inicializar base de datos SQLite con usuarios y tabla CTF
+init_db()
 
 # Registrar rutas desde archivo separado
 register_routes(app)

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+<!--
+    =====================================================================
+    STARK INDUSTRIES — JARVIS SECURE TERMINAL v2.1  [DEVELOPMENT BUILD]
+    =====================================================================
+    StarkDB Schema:
+      Table: users
+      Columns (6): id | username | password | role | email | description
+    =====================================================================
+    [TODO antes de producción]
+    - Leer esto antes de irse a casa
+    - Ese "TODO" de las consultas SQL... alguno lo hará algún día
+    - Deshabilitar el modo debug (sí, el que muestra todo)
+    =====================================================================
+-->
+
+<h2>Fase 2: Terminal de Autenticación JARVIS</h2>
+
+<div class="jarvis-terminal">
+    <p class="terminal-header">STARK INDUSTRIES · SISTEMA DE AUTENTICACIÓN · NIVEL 5</p>
+    <p style="margin-bottom:15px; color:#aaa;">Introduce tus credenciales para acceder al panel de control JARVIS.<br>
+    <span style="color:#555; font-size:0.8rem;">StarkDB/SQL...</span></p>
+
+    {% if sql_error %}
+    <div class="sql-error">
+        <p>[ERROR]</p>
+        <code>{{ sql_error }}</code>
+    </div>
+    {% endif %}
+
+    {% if debug_query %}
+    <div class="sql-debug">
+        <p>[DEBUG]</p>
+        <code>{{ debug_query }}</code>
+    </div>
+    {% endif %}
+
+    {% if error %}
+    <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST" action="/phase2/login">
+        <div class="question">
+            <label>Usuario JARVIS:</label>
+            <input type="text" name="username" placeholder="usuario" autocomplete="off">
+        </div>
+        <div class="question">
+            <label>Contraseña:</label>
+            <input type="password" name="password" placeholder="••••••••">
+        </div>
+        <button type="submit">▶ Autenticar</button>
+    </form>
+
+    <p class="hint" style="margin-top:18px; font-size:0.8rem;">
+        ¿Sin credenciales? Qué situación tan... incapacitante.<br>
+        Aunque claro, siempre existe la posibilidad de que el sistema sea más flexible de lo que aparenta.
+    </p>
+</div>
+
+<p style="margin-top:15px;"><a href="/">Volver al inicio</a></p>
+{% endblock %}

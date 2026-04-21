@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Fase 2 Desbloqueada: JARVIS Comprometido</h2>
+
+<div class="unlocked-box">
+    <p class="access-granted">[ ACCESO CONCEDIDO — JARVIS COMPROMETIDO ]</p>
+    <p>Has explotado exitosamente la vulnerabilidad de SQL Injection en el sistema de autenticación de la Torre Stark. El motor de base de datos confió ciegamente en tu input.</p>
+
+    <h3>Perfil Autenticado</h3>
+
+    <div class="user-card">
+        <table style="width:100%; border-collapse:collapse;">
+            <tr>
+                <td class="cell-label">Usuario:</td>
+                <td>{{ logged_user }}</td>
+            </tr>
+            <tr>
+                <td class="cell-label">Contraseña:</td>
+                <td style="color:#333;">••••••••••••</td>
+            </tr>
+            <tr>
+                <td class="cell-label">Rol:</td>
+                <td>{{ logged_role }}</td>
+            </tr>
+            <tr>
+                <td class="cell-label">Email:</td>
+                <td>{{ logged_email }}</td>
+            </tr>
+            <tr>
+                <td class="cell-label">Descripción:</td>
+                <td class="cell-description">{{ logged_description }}</td>
+            </tr>
+        </table>
+    </div>
+
+    {% if union_rows %}
+    <h3 style="margin-top:18px;">Datos Extraídos por Inyección UNION</h3>
+    <p style="color:#ff9900; font-size:0.85rem;">[!] {{ union_rows | length }} fila(s) inyectada(s) desde otra tabla</p>
+    {% for row in union_rows %}
+    <div class="user-card" style="margin-bottom:8px; border-color:#00aa44;">
+        <table style="width:100%; border-collapse:collapse;">
+            <tr>
+                <td class="cell-label">ID de acceso:</td>
+                <td>{{ row[0] }}</td>
+            </tr>
+            <tr>
+                <td class="cell-label">Usuario:</td>
+                <td>{{ row[1] }}</td>
+            </tr>
+            <tr>
+                <td class="cell-label">Contraseña:</td>
+                <td>{{ row[2] }}</td>
+            </tr>
+            <tr>
+                <td class="cell-label">Rol:</td>
+                <td>{{ row[3] }}</td>
+            </tr>
+            <tr>
+                <td class="cell-label">Email:</td>
+                <td>{{ row[4] }}</td>
+            </tr>
+            <tr>
+                <td class="cell-label">Descripción:</td>
+                <td class="cell-description">{{ row[5] }}</td>
+            </tr>
+        </table>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <div class="sql-debug" style="margin-top:12px;">
+        <p>[JARVIS LOG] Autenticación comprometida vía campo <code>username</code>.<br>
+        Alguien le habló a la base de datos en su propio idioma... y ella respondió con más información de la que debería.<br>
+        Nota interna: los desarrolladores siguen "a punto de" arreglarlo.</p>
+    </div>
+</div>
+
+<div class="unlocked-box" style="border-color:#cc4400;">
+    <p style="color:#ff7733; font-weight:bold;">[!] JARVIS Intelligence: acceso parcial</p>
+    <p>Este perfil de usuario <strong>no almacena activos de inteligencia en texto plano</strong>.
+    Los datos clasificados de Stark Industries viven en otro lugar dentro del mismo motor. Lugares que una consulta simple sobre <code>users</code> jamás visitará.</p>
+    <p class="hint">Si quieres ver más allá, tendrás que aprender cómo hacer que una sola consulta hable con varias fuentes a la vez.
+    No es trivial. Pero SQLite es generoso con quienes saben cómo preguntarle sobre su propia estructura.</p>
+    <p class="hint">Pista: todo sistema bien organizado lleva un registro interno de lo que contiene.
+    Si encontraras ese índice y supieras cuántas columnas necesita tu consulta para cuadrar... los nombres de las tablas podrían aparecer solos.</p>
+</div>
+
+<div class="unlocked-box">
+    <h3>Enviar Flag de Infiltración</h3>
+    <p>La flag no está donde ya miraste. Tendrás que explorar más profundo en la estructura del sistema. Tony Stark nunca se conformó con lo primero que encontró.</p>
+
+    {% if flag_success %}
+    <p class="success">Flag correcta. JARVIS registra tu infiltración total en la Torre Stark.</p>
+    <p class="hint">Has vaciado la base de datos. Los registros filtrados contienen credenciales adicionales...<br>
+    ¿Recuerdas los usuarios que encontraste en la Fase 1?</p>
+    {% else %}
+        {% if flag_error %}
+        <p class="error">{{ flag_error }}</p>
+        {% endif %}
+        <form method="POST" action="/phase2/success">
+            <div class="question">
+                <input type="text" name="flag" placeholder="FLAG{...}" required>
+            </div>
+            <button type="submit">Validar Flag</button>
+        </form>
+    {% endif %}
+</div>
+
+<p><a href="/">Volver al inicio</a></p>
+{% endblock %}

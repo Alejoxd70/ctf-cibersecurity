@@ -21,7 +21,10 @@
 
     {% if flag_success %}
     <p class="success">Correcto. La Torre Stark ha registrado tu acceso.</p>
-    <p class="hint">Ah, y no olvides responder esa pregunta... <br>Seguro que alguno funciona... <br>O ninguno...</p>
+    <p class="hint">El reconocimiento reveló la superficie de ataque. Ahora el sistema de autenticación espera.</p>
+    <p class="hint">Los desarrolladores a veces confían demasiado en lo que el usuario escribe...</p>
+    <p class="hint">¿Hablas el idioma que entienden las bases de datos?</p>
+    <p style="margin-top:12px;"><a href="/phase2">→ Continuar: Fase 2 — Infiltración del sistema de autenticación JARVIS</a></p>
     {% else %}
         {% if flag_error %}
         <p class="error">{{ flag_error }}</p>
